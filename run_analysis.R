@@ -19,6 +19,7 @@ allData = rbind(trainData, testData)
 allFeatureNames = read.table("UCI HAR Dataset/features.txt")
 variablesToKeep = grep("(mean|std)\\(\\)", allFeatureNames$V2)
 featureNames = gsub("[()]", "", allFeatureNames[variablesToKeep,2])
+featureNames = gsub("BodyBody", "Body", featureNames)  # Fix apparent typos in variable names
 
 # restrict accelerometer data to desired measurements
 allData = allData[,variablesToKeep]
